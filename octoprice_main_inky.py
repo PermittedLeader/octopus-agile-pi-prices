@@ -6,7 +6,7 @@
 # This script *won't work* unless you have run (python3 store_prices.py) at least once in the last 'n' hours (n is variable, it updates 4pm every day)
 # You also need to update store_prices.py to include your own DNO region.
 
-from inky.auto import auto
+from inky.auto import InkyPHAT_SSD1608
 #from font_hanken_grotesk import HankenGroteskBold, HankenGroteskMedium  # should you choose to switch to gross fonts
 #from font_intuitive import Intuitive
 from font_fredoka_one import FredokaOne  # this is the font we're currently using
@@ -20,7 +20,7 @@ from urllib.request import pathname2url
 
 ##  -- Detect display type automatically
 try:
-    inky_display = auto(ask_user=False, verbose=True)
+    inky_display = InkyPHAT_SSD1608("red")
 except TypeError:
     raise TypeError("You need to update the Inky library to >= v1.1.0")
 
