@@ -304,7 +304,7 @@ else: #high res display
 	else:
 		draw.text((x, y), message, inky_display.BLACK, font)
 
-	right_column = 172
+	right_column = 0
 
 	# NEXT
 	message = "2:" + "{0:.1f}".format(next_price) + "p"
