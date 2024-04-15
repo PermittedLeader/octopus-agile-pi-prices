@@ -261,11 +261,20 @@ if (inky_display.WIDTH == 212): #low res display
 		draw.text((x, y), message, inky_display.BLACK, font)
 
 	# NEXT
-	message = "4:" + "{0:.1f}".format(nextp2_price) + "p"
-	font = ImageFont.truetype(FredokaOne, 20)
-	w3, h3 = font.getsize(message)
+	time_change = datetime.timedelta(minutes=90) 
+	new_time = the_now_local + time_change 
+	message = (str(new_time.time())[0:5])
+	font = ImageFont.truetype(HankenGroteskLight, 15)
+	w2, h2 = font.getsize(message)
 	x = 0
-	y = third_row +40
+	y = y + h2
+	draw.text((x, y), message, inky_display.BLACK, font)
+
+	message = "4:" + "{0:.1f}".format(nextp2_price) + "p"
+	font = ImageFont.truetype(HankenGroteskMedium, 15)
+	w3, h3 = font.getsize(message)
+	x = inky_display.HEIGHT - w3
+	y = y
 
 	if (nextp2_price > 14.8):
 		draw.text((x,y), message, inky_display.RED, font)
