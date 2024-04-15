@@ -35,7 +35,7 @@ except sqlite3.OperationalError as error:
     raise SystemExit('Database not found - you need to run store_prices.py first.') from error
 
 inky_display.set_border(inky_display.WHITE)
-img = Image.new("P", (inky_display.HEIGHT,inky_display.WIDTH))
+img = Image.new("P", (inky_display.HEIGHT, inky_display.WIDTH))
 draw = ImageDraw.Draw(img)
 
 # find current time and convert to year month day etc
@@ -202,7 +202,7 @@ if (inky_display.WIDTH == 212): #low res display
 	message = "2:" + "{0:.1f}".format(next_price) + "p"
 	font = ImageFont.truetype(FredokaOne, 20)
 	w2, h2 = font.getsize(message)
-	x = right_column
+	x = 0
 	y = third_row
 	if (next_price > 14.8):
 		draw.text((x,y), message, inky_display.RED, font)
@@ -213,7 +213,7 @@ if (inky_display.WIDTH == 212): #low res display
 	message = "3:" + "{0:.1f}".format(nextp1_price) + "p"
 	font = ImageFont.truetype(FredokaOne, 20)
 	w3, h3 = font.getsize(message)
-	x = right_column
+	x = 0
 	y = third_row +20
 
 	if (nextp1_price > 14.8):
@@ -225,7 +225,7 @@ if (inky_display.WIDTH == 212): #low res display
 	message = "4:" + "{0:.1f}".format(nextp2_price) + "p"
 	font = ImageFont.truetype(FredokaOne, 20)
 	w3, h3 = font.getsize(message)
-	x = right_column
+	x = 0
 	y = third_row +40
 
 	if (nextp2_price > 14.8):
@@ -271,12 +271,12 @@ if (inky_display.WIDTH == 212): #low res display
 	# draw the bottom right min price and how many hours that is away
 	font = ImageFont.truetype(FredokaOne, 15)
 	msg = "min:"+"{0:.1f}".format(lowest_price_next_24h) + "p"
-	draw.text((right_column,third_row +60), msg, inky_display.BLACK, font)
+	draw.text((0,third_row +60), msg, inky_display.BLACK, font)
 	# we know how many half hours to min price, now figure it out in hours.
 	minterval = (round(prices.index(lowest_price_next_24h)/2))
 	print ("minterval:"+str(minterval))
 	msg = "in:"+str(minterval)+"hrs"
-	draw.text((right_column,third_row + 75), msg, inky_display.BLACK, font)
+	draw.text((0,third_row + 75), msg, inky_display.BLACK, font)
 
 	# and convert that to an actual time
 	# note that this next time will not give you an exact half hour if you don't run this at an exact half hour eg cron
@@ -289,7 +289,7 @@ if (inky_display.WIDTH == 212): #low res display
 	print("which is: "+ str(time_of_cheapest.time())[0:5])
 	time_of_cheapest_formatted = "at " + (str(time_of_cheapest.time())[0:5])
 	font = ImageFont.truetype(FredokaOne, 15)
-	draw.text((right_column,third_row + 90), time_of_cheapest_formatted, inky_display.BLACK, font)
+	draw.text((0,third_row + 90), time_of_cheapest_formatted, inky_display.BLACK, font)
 
 else: #high res display
 
@@ -314,7 +314,7 @@ else: #high res display
 	message = "2:" + "{0:.1f}".format(next_price) + "p"
 	font = ImageFont.truetype(FredokaOne, 23)
 	w2, h2 = font.getsize(message)
-	x = right_column
+	x = 0
 	y = second_row
 	if (next_price > 14.8):
 		draw.text((x,y), message, inky_display.RED, font)
@@ -325,7 +325,7 @@ else: #high res display
 	message = "3:" + "{0:.1f}".format(nextp1_price) + "p"
 	font = ImageFont.truetype(FredokaOne, 23)
 	w3, h3 = font.getsize(message)
-	x = right_column
+	x = 0
 	y = second_row + 23
 
 	if (nextp1_price > 14.8):
@@ -337,7 +337,7 @@ else: #high res display
 	message = "4:" + "{0:.1f}".format(nextp2_price) + "p"
 	font = ImageFont.truetype(FredokaOne, 23)
 	w3, h3 = font.getsize(message)
-	x = right_column
+	x = 0
 	y = second_row + 46
 
 	if (nextp2_price > 14.8):
