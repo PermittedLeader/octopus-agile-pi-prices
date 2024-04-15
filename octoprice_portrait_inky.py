@@ -181,7 +181,7 @@ for offset in range(0, 48):  ##24h = 48 segments
 
 if (inky_display.WIDTH == 212): #low res display
 
-	font = ImageFont.truetype(HankenGroteskLight, 40)
+	font = ImageFont.truetype(HankenGroteskLight, 5)
 	message = "@"+(str(the_now_local.time())[0:5])
 	w, h = font.getsize(message)
 	#x = (inky_display.WIDTH / 2) - (w / 2)
