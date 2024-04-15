@@ -181,7 +181,7 @@ for offset in range(0, 48):  ##24h = 48 segments
 
 if (inky_display.WIDTH == 212): #low res display
 
-	font = ImageFont.truetype(FredokaOne, 60)
+	font = ImageFont.truetype(FredokaOne, 50)
 	message = "{0:.1f}".format(current_price) + "p"
 	w, h = font.getsize(message)
 	#x = (inky_display.WIDTH / 2) - (w / 2)
@@ -271,12 +271,12 @@ if (inky_display.WIDTH == 212): #low res display
 	# draw the bottom right min price and how many hours that is away
 	font = ImageFont.truetype(FredokaOne, 15)
 	msg = "min:"+"{0:.1f}".format(lowest_price_next_24h) + "p"
-	draw.text((right_column,60), msg, inky_display.BLACK, font)
+	draw.text((right_column,third_row +60), msg, inky_display.BLACK, font)
 	# we know how many half hours to min price, now figure it out in hours.
 	minterval = (round(prices.index(lowest_price_next_24h)/2))
 	print ("minterval:"+str(minterval))
 	msg = "in:"+str(minterval)+"hrs"
-	draw.text((right_column,75), msg, inky_display.BLACK, font)
+	draw.text((right_column,third_row + 75), msg, inky_display.BLACK, font)
 
 	# and convert that to an actual time
 	# note that this next time will not give you an exact half hour if you don't run this at an exact half hour eg cron
@@ -289,7 +289,7 @@ if (inky_display.WIDTH == 212): #low res display
 	print("which is: "+ str(time_of_cheapest.time())[0:5])
 	time_of_cheapest_formatted = "at " + (str(time_of_cheapest.time())[0:5])
 	font = ImageFont.truetype(FredokaOne, 15)
-	draw.text((right_column,90), time_of_cheapest_formatted, inky_display.BLACK, font)
+	draw.text((right_column,third_row + 90), time_of_cheapest_formatted, inky_display.BLACK, font)
 
 else: #high res display
 
