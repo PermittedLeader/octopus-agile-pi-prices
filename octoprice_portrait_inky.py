@@ -194,14 +194,16 @@ if (inky_display.WIDTH == 212): #low res display
 	else:
 		draw.text((x, y), message, inky_display.BLACK, font)
 
-	right_column = 145
+	right_column = 0
+	second_row = 75
+	third_row = 150
 
 	# NEXT
 	message = "2:" + "{0:.1f}".format(next_price) + "p"
 	font = ImageFont.truetype(FredokaOne, 20)
 	w2, h2 = font.getsize(message)
 	x = right_column
-	y = 0
+	y = third_row
 	if (next_price > 14.8):
 		draw.text((x,y), message, inky_display.RED, font)
 	else:
@@ -212,7 +214,7 @@ if (inky_display.WIDTH == 212): #low res display
 	font = ImageFont.truetype(FredokaOne, 20)
 	w3, h3 = font.getsize(message)
 	x = right_column
-	y = 20
+	y = third_row +20
 
 	if (nextp1_price > 14.8):
 		draw.text((x,y), message, inky_display.RED, font)
@@ -224,7 +226,7 @@ if (inky_display.WIDTH == 212): #low res display
 	font = ImageFont.truetype(FredokaOne, 20)
 	w3, h3 = font.getsize(message)
 	x = right_column
-	y = 40
+	y = third_row +40
 
 	if (nextp2_price > 14.8):
 		draw.text((x,y), message, inky_display.RED, font)
