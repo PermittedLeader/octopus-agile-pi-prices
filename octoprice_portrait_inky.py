@@ -405,5 +405,5 @@ else: #high res display
 
 
 # render the actual image onto the display
-inky_display.set_image(img.rotate(90))
+inky_display.set_image(img)
 inky_display.show()
