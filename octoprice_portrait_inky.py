@@ -191,7 +191,7 @@ if (inky_display.WIDTH == 212): #low res display
 	draw.text((x, y), message, inky_display.BLACK, font)
 
 
-	font = ImageFont.truetype(HankenGroteskLight, 40)
+	font = ImageFont.truetype(HankenGroteskLight, 35)
 	message = "{0:.1f}".format(current_price)
 	w2, h2 = font.getsize(message)
 	#x = (inky_display.WIDTH / 2) - (w / 2)
@@ -204,7 +204,7 @@ if (inky_display.WIDTH == 212): #low res display
 	else:
 		draw.text((x, y), message, inky_display.BLACK, font)
 
-	font = ImageFont.truetype(HankenGroteskLight, 12)
+	font = ImageFont.truetype(HankenGroteskLight, 8)
 	message = "p/kWh"
 	w, h = font.getsize(message)
 	#x = (inky_display.WIDTH / 2) - (w / 2)
