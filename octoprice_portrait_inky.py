@@ -182,12 +182,21 @@ for offset in range(0, 48):  ##24h = 48 segments
 if (inky_display.WIDTH == 212): #low res display
 
 	font = ImageFont.truetype(HankenGroteskLight, 40)
-	message = "{0:.1f}".format(current_price) + "p"
+	message = "@"+(str(the_now_local.time())[0:5])
 	w, h = font.getsize(message)
 	#x = (inky_display.WIDTH / 2) - (w / 2)
 	#y = (inky_display.HEIGHT / 2) - (h / 2)
 	x = 0
 	y = -5
+	draw.text((x, y), message, inky_display.BLACK, font)
+
+
+	font = ImageFont.truetype(HankenGroteskLight, 40)
+	message = "{0:.1f}".format(current_price) + "p"
+	#x = (inky_display.WIDTH / 2) - (w / 2)
+	#y = (inky_display.HEIGHT / 2) - (h / 2)
+	x = 0
+	y = h+2
 
 	if (current_price > 14.8):
 		draw.text((x, y), message, inky_display.RED, font)
