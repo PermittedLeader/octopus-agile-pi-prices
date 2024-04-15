@@ -255,10 +255,13 @@ if (inky_display.WIDTH == 212): #low res display
 		if prices[i] < 999:
 			scaled_price = prices[i] * pixels_per_h # we're scaling it by the value above
 
-			if prices[i] <= (lowest_price_next_24h + 1):   # if within 1p of the lowest price, display in black
-				ink_color = inky_display.BLACK
-			else:
+			if prices[i] < 0: 
 				ink_color = inky_display.RED
+			else:
+				if prices[i] >= 20:   
+					ink_color = inky_display.RED
+				else:
+					ink_color = inky_display.BLACK
 
 			# takes a bit of thought this next bit, draw a rectangle from say x =  2i to 2(i-1) for each plot value
 			# pixels_per_w defines the horizontal scaling factor (2 seems to work)
