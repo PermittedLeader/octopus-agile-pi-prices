@@ -7,7 +7,7 @@
 # You also need to update store_prices.py to include your own DNO region.
 
 from inky.auto import InkyPHAT
-#from font_hanken_grotesk import HankenGroteskBold, HankenGroteskMedium  # should you choose to switch to gross fonts
+from font_hanken_grotesk import HankenGroteskBold, HankenGroteskMedium, HankenGroteskLight  # should you choose to switch to gross fonts
 #from font_intuitive import Intuitive
 from font_fredoka_one import FredokaOne  # this is the font we're currently using
 from PIL import Image, ImageFont, ImageDraw
@@ -181,7 +181,7 @@ for offset in range(0, 48):  ##24h = 48 segments
 
 if (inky_display.WIDTH == 212): #low res display
 
-	font = ImageFont.truetype(FredokaOne, 40)
+	font = ImageFont.truetype(HankenGroteskLight, 40)
 	message = "{0:.1f}".format(current_price) + "p"
 	w, h = font.getsize(message)
 	#x = (inky_display.WIDTH / 2) - (w / 2)
