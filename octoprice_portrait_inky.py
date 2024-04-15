@@ -215,7 +215,7 @@ if (inky_display.WIDTH == 212): #low res display
 
 	right_column = 0
 	second_row = 75
-	third_row = 150
+	third_row = 160
 
 	# NEXT
 	time_change = datetime.timedelta(minutes=30) 
@@ -270,7 +270,7 @@ if (inky_display.WIDTH == 212): #low res display
 	y = y + h2
 	draw.text((x, y), message, inky_display.BLACK, font)
 
-	message = "4:" + "{0:.1f}".format(nextp2_price) + "p"
+	message = "{0:.1f}".format(nextp2_price) + "p"
 	font = ImageFont.truetype(HankenGroteskMedium, 15)
 	w3, h3 = font.getsize(message)
 	x = inky_display.HEIGHT - w3
