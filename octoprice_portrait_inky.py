@@ -233,7 +233,7 @@ if (inky_display.WIDTH == 212): #low res display
 	font = ImageFont.truetype(HankenGroteskMedium, 15)
 	w2, h2 = font.getsize(message)
 	x = inky_display.HEIGHT - w2
-	y = third_row
+	y = y
 	if (next_price > 14.8):
 		draw.text((x,y), message, inky_display.RED, font)
 	else:
@@ -246,14 +246,14 @@ if (inky_display.WIDTH == 212): #low res display
 	font = ImageFont.truetype(HankenGroteskLight, 15)
 	w2, h2 = font.getsize(message)
 	x = 0
-	y = third_row + 20
+	y = y + h2
 	draw.text((x, y), message, inky_display.BLACK, font)
 
 	message = "{0:.1f}".format(nextp1_price) + "p"
-	font = ImageFont.truetype(HankenGroteskMedium, 20)
+	font = ImageFont.truetype(HankenGroteskMedium, 15)
 	w3, h3 = font.getsize(message)
 	x = inky_display.HEIGHT - w3
-	y = third_row +20
+	y = y
 
 	if (nextp1_price > 14.8):
 		draw.text((x,y), message, inky_display.RED, font)
