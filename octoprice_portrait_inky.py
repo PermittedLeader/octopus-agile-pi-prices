@@ -218,7 +218,9 @@ if (inky_display.WIDTH == 212): #low res display
 	third_row = 150
 
 	# NEXT
-	message = "2:" + "{0:.1f}".format(next_price) + "p"
+	time_change = datetime.timedelta(minutes=30) 
+	new_time = the_now_local + time_change 
+	message = (str(new_time.time())[0:5]) + "{0:.1f}".format(next_price) + "p"
 	font = ImageFont.truetype(FredokaOne, 20)
 	w2, h2 = font.getsize(message)
 	x = 0
