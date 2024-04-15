@@ -36,7 +36,6 @@ except sqlite3.OperationalError as error:
 
 inky_display.set_border(inky_display.WHITE)
 img = Image.new("P", (inky_display.WIDTH,inky_display.HEIGHT))
-img = img.rotate(90)
 draw = ImageDraw.Draw(img)
 
 # find current time and convert to year month day etc
