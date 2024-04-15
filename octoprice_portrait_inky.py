@@ -407,5 +407,5 @@ else: #high res display
 	draw.text((right_column,101), time_of_cheapest_formatted, inky_display.BLACK, font)
 
 # render the actual image onto the display
-inky_display.set_image(img.rotate(270, expand=True))
+inky_display.set_image(img.rotate(90, expand=True))
 inky_display.show()
