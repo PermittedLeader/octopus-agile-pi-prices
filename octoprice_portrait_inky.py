@@ -305,13 +305,15 @@ else: #high res display
 		draw.text((x, y), message, inky_display.BLACK, font)
 
 	right_column = 0
+	second_row = 75
+	third_row = 150
 
 	# NEXT
 	message = "2:" + "{0:.1f}".format(next_price) + "p"
 	font = ImageFont.truetype(FredokaOne, 23)
 	w2, h2 = font.getsize(message)
 	x = right_column
-	y = 0
+	y = second_row
 	if (next_price > 14.8):
 		draw.text((x,y), message, inky_display.RED, font)
 	else:
@@ -322,7 +324,7 @@ else: #high res display
 	font = ImageFont.truetype(FredokaOne, 23)
 	w3, h3 = font.getsize(message)
 	x = right_column
-	y = 23
+	y = second_row + 23
 
 	if (nextp1_price > 14.8):
 		draw.text((x,y), message, inky_display.RED, font)
@@ -334,7 +336,7 @@ else: #high res display
 	font = ImageFont.truetype(FredokaOne, 23)
 	w3, h3 = font.getsize(message)
 	x = right_column
-	y = 46
+	y = second_row + 46
 
 	if (nextp2_price > 14.8):
 		draw.text((x,y), message, inky_display.RED, font)
@@ -342,7 +344,7 @@ else: #high res display
 		draw.text((x, y), message, inky_display.BLACK, font)
 
 	pixels_per_h = 2.3  # how many pixels 1p is worth
-	pixels_per_w = 3.5  # how many pixels 1/2 hour is worth
+	pixels_per_w = 3  # how many pixels 1/2 hour is worth
 	chart_base_loc = 121  # location of the bottom of the chart on screen in pixels
 	#chart_base_loc = 85  # location of the bottom of the chart on screen in pixels
 	number_of_vals_to_display = 48 # 36 half hours = 18 hours
