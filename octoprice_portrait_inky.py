@@ -403,7 +403,7 @@ else: #high res display
 	font = ImageFont.truetype(FredokaOne, 16)
 	draw.text((right_column,101), time_of_cheapest_formatted, inky_display.BLACK, font)
 
-
+img.save('img.jpg')
 # render the actual image onto the display
 inky_display.set_image(img.rotate(90))
 inky_display.show()
