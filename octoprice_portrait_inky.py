@@ -186,7 +186,7 @@ if (inky_display.WIDTH == 212): #low res display
 	w, h = font.getsize(message)
 	#x = (inky_display.WIDTH / 2) - (w / 2)
 	#y = (inky_display.HEIGHT / 2) - (h / 2)
-	x = inky_display.WIDTH - w
+	x = inky_display.HEIGHT - w
 	y = 0
 	draw.text((x, y), message, inky_display.BLACK, font)
 
