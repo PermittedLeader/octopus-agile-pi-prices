@@ -35,7 +35,7 @@ except sqlite3.OperationalError as error:
     raise SystemExit('Database not found - you need to run store_prices.py first.') from error
 
 inky_display.set_border(inky_display.WHITE)
-img = Image.new("P", (inky_display.WIDTH,inky_display.HEIGHT))
+img = Image.new("P", (inky_display.HEIGHT,inky_display.WIDTH))
 draw = ImageDraw.Draw(img)
 
 # find current time and convert to year month day etc
@@ -407,5 +407,5 @@ else: #high res display
 	draw.text((right_column,101), time_of_cheapest_formatted, inky_display.BLACK, font)
 
 # render the actual image onto the display
-inky_display.set_image(img)
+inky_display.set_image(img.rotate(270, expand=True))
 inky_display.show()
