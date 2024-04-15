@@ -192,12 +192,12 @@ if (inky_display.WIDTH == 212): #low res display
 
 
 	font = ImageFont.truetype(HankenGroteskLight, 40)
-	message = "{0:.1f}".format(current_price) + "p"
+	message = "{0:.1f}".format(current_price)
 	w2, h2 = font.getsize(message)
 	#x = (inky_display.WIDTH / 2) - (w / 2)
 	#y = (inky_display.HEIGHT / 2) - (h / 2)
 	x = 0
-	y = h+2
+	y = h
 
 	if (current_price > 14.8):
 		draw.text((x, y), message, inky_display.RED, font)
