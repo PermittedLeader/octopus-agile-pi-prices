@@ -51,6 +51,8 @@ if the_now.minute < 30:
 else:
 	the_segment = 1
 
+red_threshold = 20
+
 print ('segment:')
 print (the_segment)
 
@@ -198,7 +200,7 @@ if (inky_display.WIDTH == 212): #low res display
 	#y = (inky_display.HEIGHT / 2) - (h / 2)
 	y = h
 
-	if (current_price > 14.8):
+	if (current_price > red_threshold):
 		draw.text((x, y), message, inky_display.RED, font)
 	else:
 		draw.text((x, y), message, inky_display.BLACK, font)
@@ -225,7 +227,7 @@ if (inky_display.WIDTH == 212): #low res display
 	w2, h2 = font.getsize(message)
 	x = inky_display.HEIGHT - w2
 	y = y
-	if (next_price > 14.8):
+	if (next_price > red_threshold):
 		draw.text((x,y), message, inky_display.RED, font)
 	else:
 		draw.text((x, y), message, inky_display.BLACK, font)
@@ -246,7 +248,7 @@ if (inky_display.WIDTH == 212): #low res display
 	x = inky_display.HEIGHT - w3
 	y = y
 
-	if (nextp1_price > 14.8):
+	if (nextp1_price > red_threshold):
 		draw.text((x,y), message, inky_display.RED, font)
 	else:
 		draw.text((x, y), message, inky_display.BLACK, font)
@@ -267,7 +269,7 @@ if (inky_display.WIDTH == 212): #low res display
 	x = inky_display.HEIGHT - w3
 	y = y
 
-	if (nextp2_price > 14.8):
+	if (nextp2_price > red_threshold):
 		draw.text((x,y), message, inky_display.RED, font)
 	else:
 		draw.text((x, y), message, inky_display.BLACK, font)
@@ -296,7 +298,7 @@ if (inky_display.WIDTH == 212): #low res display
 			if prices[i] < 0: 
 				ink_color = inky_display.RED
 			else:
-				if prices[i] >= 20:   
+				if prices[i] >= red_threshold:   
 					ink_color = inky_display.RED
 				else:
 					ink_color = inky_display.BLACK
@@ -343,7 +345,7 @@ else: #high res display
 	x = 0
 	y = -10
 
-	if (current_price > 14.8):
+	if (current_price > red_threshold):
 		draw.text((x, y), message, inky_display.RED, font)
 	else:
 		draw.text((x, y), message, inky_display.BLACK, font)
@@ -358,7 +360,7 @@ else: #high res display
 	w2, h2 = font.getsize(message)
 	x = 0
 	y = second_row
-	if (next_price > 14.8):
+	if (next_price > red_threshold):
 		draw.text((x,y), message, inky_display.RED, font)
 	else:
 		draw.text((x, y), message, inky_display.BLACK, font)
@@ -370,7 +372,7 @@ else: #high res display
 	x = 0
 	y = second_row + 23
 
-	if (nextp1_price > 14.8):
+	if (nextp1_price > red_threshold):
 		draw.text((x,y), message, inky_display.RED, font)
 	else:
 		draw.text((x, y), message, inky_display.BLACK, font)
@@ -382,7 +384,7 @@ else: #high res display
 	x = 0
 	y = second_row + 46
 
-	if (nextp2_price > 14.8):
+	if (nextp2_price > red_threshold):
 		draw.text((x,y), message, inky_display.RED, font)
 	else:
 		draw.text((x, y), message, inky_display.BLACK, font)
