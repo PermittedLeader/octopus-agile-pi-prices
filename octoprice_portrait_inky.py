@@ -208,7 +208,8 @@ if (inky_display.WIDTH == 212): #low res display
 
 	right_column = 0
 	second_row = 75
-	third_row = 160
+	third_row = 100
+	fourth_row = 165
 
 	# NEXT
 	time_change = datetime.timedelta(minutes=30) 
@@ -217,7 +218,7 @@ if (inky_display.WIDTH == 212): #low res display
 	font = ImageFont.truetype(HankenGroteskLight, 15)
 	w2, h2 = font.getsize(message)
 	x = 0
-	y = third_row
+	y = fourth_row
 	draw.text((x, y), message, inky_display.BLACK, font)
 	
 	time_change = datetime.timedelta(minutes=30) 
@@ -315,12 +316,12 @@ if (inky_display.WIDTH == 212): #low res display
 	# draw the bottom right min price and how many hours that is away
 	font = ImageFont.truetype(FredokaOne, 15)
 	msg = "min:"+"{0:.1f}".format(lowest_price_next_24h) + "p"
-	draw.text((0,third_row +60), msg, inky_display.BLACK, font)
+	draw.text((0,fourth_row +60), msg, inky_display.BLACK, font)
 	# we know how many half hours to min price, now figure it out in hours.
 	minterval = (round(prices.index(lowest_price_next_24h)/2))
 	print ("minterval:"+str(minterval))
 	msg = "in:"+str(minterval)+"hrs"
-	draw.text((0,third_row + 75), msg, inky_display.BLACK, font)
+	draw.text((0,fourth_row + 75), msg, inky_display.BLACK, font)
 
 	# and convert that to an actual time
 	# note that this next time will not give you an exact half hour if you don't run this at an exact half hour eg cron
@@ -333,7 +334,7 @@ if (inky_display.WIDTH == 212): #low res display
 	print("which is: "+ str(time_of_cheapest.time())[0:5])
 	time_of_cheapest_formatted = "at " + (str(time_of_cheapest.time())[0:5])
 	font = ImageFont.truetype(FredokaOne, 15)
-	draw.text((0,third_row + 90), time_of_cheapest_formatted, inky_display.BLACK, font)
+	draw.text((0,fourth_row + 90), time_of_cheapest_formatted, inky_display.BLACK, font)
 
 else: #high res display
 
@@ -352,7 +353,7 @@ else: #high res display
 
 	right_column = 0
 	second_row = 75
-	third_row = 150
+	fourth_row = 150
 
 	# NEXT
 	message = "2:" + "{0:.1f}".format(next_price) + "p"
