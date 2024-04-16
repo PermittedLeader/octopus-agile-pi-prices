@@ -194,7 +194,7 @@ if (inky_display.WIDTH == 212): #low res display
 	font = ImageFont.truetype(HankenGroteskMedium, 35)
 	message = "{0:.1f}".format(current_price) + "p"
 	w2, h2 = font.getsize(message)
-	x = (inky_display.HEIGHT / 2) - (w / 2)
+	x = (inky_display.HEIGHT / 2) - (w2 / 2)
 	#y = (inky_display.HEIGHT / 2) - (h / 2)
 	y = h
 
