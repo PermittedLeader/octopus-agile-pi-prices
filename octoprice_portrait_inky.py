@@ -308,7 +308,7 @@ if (inky_display.WIDTH == 212): #low res display
 			# pixels_per_w defines the horizontal scaling factor (2 seems to work)
 			draw.rectangle((pixels_per_w*i,chart_base_loc,((pixels_per_w*i)-pixels_per_w),(chart_base_loc-scaled_price)),ink_color)
 			if i%6 == 0 and i > 0:
-				message = "{0:.1f}".format(nextp1_price) + "p"
+				message = "^"
 				font = ImageFont.truetype(HankenGroteskMedium, 5)
 				w, h = font.getsize(message)
 				draw.text(((pixels_per_w*i)-(w/2),chart_base_loc+3), message, inky_display.BLACK, font)
