@@ -309,7 +309,7 @@ if (inky_display.WIDTH == 212): #low res display
 			draw.rectangle((pixels_per_w*i,chart_base_loc,((pixels_per_w*i)-pixels_per_w),(chart_base_loc-scaled_price)),ink_color)
 			if i%6 == 0 and i > 0:
 				message = "^"
-				font = ImageFont.truetype(HankenGroteskMedium, 5)
+				font = ImageFont.truetype(HankenGroteskMedium, 10)
 				w, h = font.getsize(message)
 				draw.text(((pixels_per_w*i)-(w/2),chart_base_loc+3), message, inky_display.BLACK, font)
 
