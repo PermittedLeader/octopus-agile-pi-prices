@@ -307,6 +307,10 @@ if (inky_display.WIDTH == 212): #low res display
 			# takes a bit of thought this next bit, draw a rectangle from say x =  2i to 2(i-1) for each plot value
 			# pixels_per_w defines the horizontal scaling factor (2 seems to work)
 			draw.rectangle((pixels_per_w*i,chart_base_loc,((pixels_per_w*i)-pixels_per_w),(chart_base_loc-scaled_price)),ink_color)
+			if i%6 == 0:
+				msg = "^"
+				draw.text((pixels_per_w*i,chart_base_loc+3), msg, inky_display.BLACK, font)
+
 
 	#draw minimum value on chart  <- this doesn't seem to work yet
 	# font = ImageFont.truetype(FredokaOne, 15)
