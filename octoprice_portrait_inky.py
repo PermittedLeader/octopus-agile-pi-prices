@@ -276,7 +276,7 @@ if (inky_display.WIDTH == 212): #low res display
 		draw.text((x, y), message, inky_display.BLACK, font)
 
 	pixels_per_h = 1.5  # how many pixels 1p is worth
-	pixels_per_w = 2  # how many pixels 1/2 hour is worth
+	pixels_per_w = 3  # how many pixels 1/2 hour is worth
 	chart_base_loc = 104  # location of the bottom of the chart on screen in pixels
 	#chart_base_loc = 85  # location of the bottom of the chart on screen in pixels
 	number_of_vals_to_display = 48 # 36 half hours = 18 hours
@@ -308,8 +308,8 @@ if (inky_display.WIDTH == 212): #low res display
 			# pixels_per_w defines the horizontal scaling factor (2 seems to work)
 			draw.rectangle((pixels_per_w*i,chart_base_loc,((pixels_per_w*i)-pixels_per_w),(chart_base_loc-scaled_price)),ink_color)
 			if i%6 == 0 and i > 0:
-				message = "+"+str(i/6)+"h"
-				font = ImageFont.truetype(HankenGroteskMedium, 10)
+				message = "+"+str(i/2)+"h"
+				font = ImageFont.truetype(HankenGroteskMedium, 8)
 				w, h = font.getsize(message)
 				draw.text(((pixels_per_w*i)-(w/2),chart_base_loc+3), message, inky_display.BLACK, font)
 
