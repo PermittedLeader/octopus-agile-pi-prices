@@ -18,7 +18,7 @@ import pytz
 import time
 from urllib.request import pathname2url
 
-version = "2.3.3"
+version = "2.4.1"
 
 ##  -- Detect display type automatically
 try:
@@ -225,7 +225,7 @@ if (inky_display.WIDTH == 212): #low res display
 	right_column = 0
 	second_row = 75
 	third_row = 120
-	fourth_row = 170
+	fourth_row = 165
 
 	# NEXT
 	time_change = datetime.timedelta(minutes=30) 
@@ -357,7 +357,7 @@ if (inky_display.WIDTH == 212): #low res display
 	font = ImageFont.truetype(HankenGroteskMedium, 10)
 	draw.text((0,third_row+10), msg+" ("+time_of_cheapest_formatted+")", inky_display.BLACK, font)
 
-	draw.line((0,third_row+12))
+	draw.line((0,third_row+12),width=1)
 
 	lowest_period_next_24h = min(i for i in two_hour_average)
 	# draw the bottom right min price and how many hours that is away
