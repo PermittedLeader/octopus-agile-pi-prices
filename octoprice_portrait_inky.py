@@ -18,7 +18,7 @@ import pytz
 import time
 from urllib.request import pathname2url
 
-version = "2.2.5"
+version = "2.2.6"
 
 ##  -- Detect display type automatically
 try:
@@ -225,7 +225,7 @@ if (inky_display.WIDTH == 212): #low res display
 	right_column = 0
 	second_row = 75
 	third_row = 120
-	fourth_row = 165
+	fourth_row = 180
 
 	# NEXT
 	time_change = datetime.timedelta(minutes=30) 
@@ -356,18 +356,18 @@ if (inky_display.WIDTH == 212): #low res display
 	print("which is: "+ str(time_of_cheapest.time())[0:5])
 	time_of_cheapest_formatted = "at " + (str(time_of_cheapest.time())[0:5])
 	font = ImageFont.truetype(HankenGroteskLight, 10)
-	draw.text((0,third_row+15), time_of_cheapest_formatted, inky_display.BLACK, font)
+	draw.text((0,third_row+18), time_of_cheapest_formatted, inky_display.BLACK, font)
 
 	lowest_period_next_24h = min(i for i in two_hour_average)
 	# draw the bottom right min price and how many hours that is away
 	font = ImageFont.truetype(HankenGroteskLight, 10)
 	msg = "cheapest 2hr:"+"{0:.1f}".format(lowest_period_next_24h) + "p"
-	draw.text((0,third_row+20), msg, inky_display.BLACK, font)
+	draw.text((0,third_row+30), msg, inky_display.BLACK, font)
 	# we know how many half hours to min price, now figure it out in hours.
 	minterval = (round(two_hour_average.index(lowest_period_next_24h)/2))
 	print ("minterval:"+str(minterval))
 	msg = "in:"+str(minterval)+"hrs"
-	draw.text((0,third_row + 25), msg, inky_display.BLACK, font)
+	draw.text((0,third_row + 38), msg, inky_display.BLACK, font)
 
 	# and convert that to an actual time
 	# note that this next time will not give you an exact half hour if you don't run this at an exact half hour eg cron
@@ -380,7 +380,7 @@ if (inky_display.WIDTH == 212): #low res display
 	print("which is: "+ str(time_of_cheapest.time())[0:5] + "for 2 hours")
 	time_of_cheapest_formatted = "at " + (str(time_of_cheapest.time())[0:5])
 	font = ImageFont.truetype(HankenGroteskLight, 10)
-	draw.text((0,third_row+30), time_of_cheapest_formatted, inky_display.BLACK, font)
+	draw.text((0,third_row+45), time_of_cheapest_formatted, inky_display.BLACK, font)
 
 else: #high res display
 
