@@ -18,7 +18,7 @@ import pytz
 import time
 from urllib.request import pathname2url
 
-version = "2.4.5"
+version = "2.4.7"
 
 ##  -- Detect display type automatically
 try:
@@ -318,7 +318,7 @@ if (inky_display.WIDTH == 212): #low res display
 			if i == 0:
 				message = "+0h"
 				font = ImageFont.truetype(HankenGroteskMedium, 7)
-				draw.text((1,chart_base_loc+3), message[0:2], inky_display.BLACK, font)
+				draw.text((1,chart_base_loc+3), message, inky_display.BLACK, font)
 
 
 	#draw minimum value on chart  <- this doesn't seem to work yet
