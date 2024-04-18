@@ -186,7 +186,7 @@ for offset in range(0, 48):  ##24h = 48 segments
 
 two_hour_average = []
 for i in range(0,len(prices)-3):
-	two_hour_average = sum(prices[i],prices[i+1],prices[i+2],prices[i+3])/4
+	two_hour_average = (prices[i]+prices[i+1]+prices[i+2]+prices[i+3])/4
 
 if (inky_display.WIDTH == 212): #low res display
 
