@@ -292,7 +292,7 @@ if (inky_display.WIDTH == 212): #low res display
 		draw.text((x, y), message, inky_display.BLACK, font)
 
 	pixels_per_h = 1.5  # how many pixels 1p is worth
-	pixels_per_w = 3  # how many pixels 1/2 hour is worth
+	pixels_per_w = 1.5  # how many pixels 1/2 hour is worth
 	chart_base_loc = 104  # location of the bottom of the chart on screen in pixels
 	#chart_base_loc = 85  # location of the bottom of the chart on screen in pixels
 	number_of_vals_to_display = 48 # 36 half hours = 18 hours
