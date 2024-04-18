@@ -61,7 +61,7 @@ cur.execute("SELECT * FROM prices WHERE year=? AND month=? AND day=? AND hour=? 
 rows = cur.fetchall()
 
 for row in rows:
-	print(row[5])
+	row[5]
 
 # get price
 current_price = row[5] # literally this is hardcoded tuple. DONT ADD ANY EXTRA FIELDS TO THAT TABLE on the sqlite db or you'll get something that isn't price.
@@ -87,7 +87,7 @@ cur.execute("SELECT * FROM prices WHERE year=? AND month=? AND day=? AND hour=? 
 rows = cur.fetchall()
 
 for row in rows:
-	print(row[5])
+	row[5]
 
 # get price
 next_price = row[5] # literally this is peak tuple. DONT ADD ANY EXTRA FIELDS TO THAT TABLE
@@ -115,7 +115,7 @@ cur.execute("SELECT * FROM prices WHERE year=? AND month=? AND day=? AND hour=? 
 rows = cur.fetchall()
 
 for row in rows:
-	print(row[5])
+	row[5]
 
 
 
@@ -143,7 +143,7 @@ cur.execute("SELECT * FROM prices WHERE year=? AND month=? AND day=? AND hour=? 
 		(the_year, the_month, the_day, the_hour, the_segment))
 rows = cur.fetchall()
 for row in rows:
-	print(row[5])
+	row[5]
 # get price
 nextp2_price = row[5] # literally this is peak tuple. DONT ADD ANY EXTRA FIELDS TO THAT TABLE
 
