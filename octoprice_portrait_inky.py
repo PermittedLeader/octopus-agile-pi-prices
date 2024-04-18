@@ -320,9 +320,9 @@ if (inky_display.WIDTH == 212): #low res display
 	# draw.text((4*(minterval-1),110),msg, inky_display.BLACK, font)
 
 	# draw the bottom right min price and how many hours that is away
-	font = ImageFont.truetype(FredokaOne, 15)
+	font = ImageFont.truetype(HankenGroteskLight, 10)
 	msg = "min:"+"{0:.1f}".format(lowest_price_next_24h) + "p"
-	draw.text((0,fourth_row +60), msg, inky_display.BLACK, font)
+	draw.text((0,third_row), msg, inky_display.BLACK, font)
 	# we know how many half hours to min price, now figure it out in hours.
 	minterval = (round(prices.index(lowest_price_next_24h)/2))
 	print ("minterval:"+str(minterval))
@@ -339,8 +339,8 @@ if (inky_display.WIDTH == 212): #low res display
 	print("cheapest at " + str(time_of_cheapest))
 	print("which is: "+ str(time_of_cheapest.time())[0:5])
 	time_of_cheapest_formatted = "at " + (str(time_of_cheapest.time())[0:5])
-	font = ImageFont.truetype(FredokaOne, 15)
-	draw.text((0,fourth_row + 90), time_of_cheapest_formatted, inky_display.BLACK, font)
+	font = ImageFont.truetype(HankenGroteskLight, 10)
+	draw.text((0,third_row+15), time_of_cheapest_formatted, inky_display.BLACK, font)
 
 else: #high res display
 
