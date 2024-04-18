@@ -18,7 +18,7 @@ import pytz
 import time
 from urllib.request import pathname2url
 
-version = "2.4.1"
+version = "2.4.2"
 
 ##  -- Detect display type automatically
 try:
@@ -31,7 +31,6 @@ try:
     DB_URI = 'file:{}?mode=rw'.format(pathname2url('agileprices.sqlite'))
     conn = sqlite3.connect(DB_URI, uri=True)
     cur = conn.cursor()
-    print('Connected to database...')
 except sqlite3.OperationalError as error:
     # handle missing database case
     raise SystemExit('Database not found - you need to run store_prices.py first.') from error
@@ -54,9 +53,6 @@ else:
 	the_segment = 1
 
 red_threshold = 20
-
-print ('segment:')
-print (the_segment)
 
 # select from db where record == the above
 cur.execute("SELECT * FROM prices WHERE year=? AND month=? AND day=? AND hour=? AND segment=?",
@@ -83,8 +79,6 @@ if now_plus_10.minute < 30:
 else:
 	the_segment = 1
 
-print ('segment+1:')
-print (the_segment)
 
 # select from db where record == the above
 cur.execute("SELECT * FROM prices WHERE year=? AND month=? AND day=? AND hour=? AND segment=?",
@@ -113,8 +107,6 @@ if now_plus_10.minute < 30:
 else:
 	the_segment = 1
 
-print ('segment:')
-print (the_segment)
 
 # select from db where record = ^
 cur.execute("SELECT * FROM prices WHERE year=? AND month=? AND day=? AND hour=? AND segment=?",
@@ -145,8 +137,6 @@ if now_plus_10.minute < 30:
 else:
 	the_segment = 1
 
-print ('segment:')
-print (the_segment)
 
 # select from db where record == the above
 cur.execute("SELECT * FROM prices WHERE year=? AND month=? AND day=? AND hour=? AND segment=?",
@@ -303,9 +293,6 @@ if (inky_display.WIDTH == 212): #low res display
 	if (lowest_price_next_24h < 0):
 		chart_base_loc = 104 + lowest_price_next_24h*pixels_per_h - 2 # if we have any negative prices, shift the base of the graph up! 
 
-	print("lowest price Position:", prices.index(lowest_price_next_24h))
-	print("low Value:", lowest_price_next_24h)
-
 	# go through each hour and get the value
 
 	for i in range(0,number_of_vals_to_display):
@@ -341,7 +328,6 @@ if (inky_display.WIDTH == 212): #low res display
 	draw.text((0,third_row), msg, inky_display.BLACK, font)
 	# we know how many half hours to min price, now figure it out in hours.
 	minterval = (round(prices.index(lowest_price_next_24h)/2))
-	print ("minterval:"+str(minterval))
 	msg = "in:"+str(minterval)+"hrs"
 
 	# and convert that to an actual time
@@ -351,8 +337,6 @@ if (inky_display.WIDTH == 212): #low res display
 
 	min_offset = prices.index(lowest_price_next_24h) * 30
 	time_of_cheapest = the_now_local + datetime.timedelta(minutes=min_offset)
-	print("cheapest at " + str(time_of_cheapest))
-	print("which is: "+ str(time_of_cheapest.time())[0:5])
 	time_of_cheapest_formatted = (str(time_of_cheapest.time())[0:5])
 	font = ImageFont.truetype(HankenGroteskMedium, 10)
 	draw.text((0,third_row+10), msg+" ("+time_of_cheapest_formatted+")", inky_display.BLACK, font)
@@ -366,7 +350,6 @@ if (inky_display.WIDTH == 212): #low res display
 	draw.text((0,third_row+22), msg, inky_display.BLACK, font)
 	# we know how many half hours to min price, now figure it out in hours.
 	minterval = (round(two_hour_average.index(lowest_period_next_24h)/2))
-	print ("minterval:"+str(minterval))
 	msg = "in:"+str(minterval)+"hrs"
 
 	# and convert that to an actual time
@@ -376,8 +359,6 @@ if (inky_display.WIDTH == 212): #low res display
 
 	min_offset = two_hour_average.index(lowest_period_next_24h) * 30
 	time_of_cheapest = the_now_local + datetime.timedelta(minutes=min_offset)
-	print("cheapest period at " + str(time_of_cheapest))
-	print("which is: "+ str(time_of_cheapest.time())[0:5] + "for 2 hours")
 	time_of_cheapest_formatted = (str(time_of_cheapest.time())[0:5])
 	font = ImageFont.truetype(HankenGroteskMedium, 10)
 	draw.text((0,third_row + 32), msg+" ("+time_of_cheapest_formatted+")", inky_display.BLACK, font)
@@ -497,3 +478,4 @@ else: #high res display
 # render the actual image onto the display
 inky_display.set_image(img.rotate(90, expand=True))
 inky_display.show()
+exit(0)
