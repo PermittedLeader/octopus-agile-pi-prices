@@ -18,7 +18,7 @@ import pytz
 import time
 from urllib.request import pathname2url
 
-version = "2.1"
+version = "2.2"
 
 ##  -- Detect display type automatically
 try:
@@ -161,6 +161,7 @@ nextp2_price = row[5] # literally this is peak tuple. DONT ADD ANY EXTRA FIELDS 
 
 # attempt to make an list of the next 42 hours of values
 prices = []
+
 for offset in range(0, 48):  ##24h = 48 segments
 	min_offset = 30 * offset
 	the_now = datetime.datetime.now(datetime.timezone.utc)
@@ -182,6 +183,10 @@ for offset in range(0, 48):  ##24h = 48 segments
 		prices.append(999) # we don't have that price yet!
 	else:
 		prices.append(row[5])
+
+two_hour_average = []
+for i in range(0,len(prices)-3):
+	two_hour_average = sum(prices[i],prices[i+1],prices[i+2],prices[i+3])/4
 
 if (inky_display.WIDTH == 212): #low res display
 
@@ -349,6 +354,30 @@ if (inky_display.WIDTH == 212): #low res display
 	time_of_cheapest = the_now_local + datetime.timedelta(minutes=min_offset)
 	print("cheapest at " + str(time_of_cheapest))
 	print("which is: "+ str(time_of_cheapest.time())[0:5])
+	time_of_cheapest_formatted = "at " + (str(time_of_cheapest.time())[0:5])
+	font = ImageFont.truetype(HankenGroteskLight, 10)
+	draw.text((0,third_row+15), time_of_cheapest_formatted, inky_display.BLACK, font)
+
+	lowest_period_next_24h = min(i for i in two_hour_average)
+	# draw the bottom right min price and how many hours that is away
+	font = ImageFont.truetype(HankenGroteskLight, 10)
+	msg = "cheapest 2hr:"+"{0:.1f}".format(lowest_period_next_24h) + "p"
+	draw.text((0,third_row), msg, inky_display.BLACK, font)
+	# we know how many half hours to min price, now figure it out in hours.
+	minterval = (round(prices.index(lowest_period_next_24h)/2))
+	print ("minterval:"+str(minterval))
+	msg = "in:"+str(minterval)+"hrs"
+	draw.text((0,fourth_row + 75), msg, inky_display.BLACK, font)
+
+	# and convert that to an actual time
+	# note that this next time will not give you an exact half hour if you don't run this at an exact half hour eg cron
+	# because it's literally just adding n * 30 mins!
+	# could in future add some code to round to 30 mins increments but it works for now.
+
+	min_offset = prices.index(lowest_period_next_24h) * 30
+	time_of_cheapest = the_now_local + datetime.timedelta(minutes=min_offset)
+	print("cheapest period at " + str(time_of_cheapest))
+	print("which is: "+ str(time_of_cheapest.time())[0:5] + "for 2 hours")
 	time_of_cheapest_formatted = "at " + (str(time_of_cheapest.time())[0:5])
 	font = ImageFont.truetype(HankenGroteskLight, 10)
 	draw.text((0,third_row+15), time_of_cheapest_formatted, inky_display.BLACK, font)
