@@ -18,7 +18,7 @@ import pytz
 import time
 from urllib.request import pathname2url
 
-version = "2.3.1"
+version = "2.3.2"
 
 ##  -- Detect display type automatically
 try:
@@ -199,7 +199,7 @@ if (inky_display.WIDTH == 212): #low res display
 	y = 0
 	draw.text((x, y), message, inky_display.BLACK, font)
 
-	font = ImageFont.truetype(HankenGroteskLight, 8)
+	font = ImageFont.truetype(HankenGroteskLight, 10)
 	message = "v" + version
 	w, h = font.getsize(message)
 	#x = (inky_display.WIDTH / 2) - (w / 2)
@@ -225,7 +225,7 @@ if (inky_display.WIDTH == 212): #low res display
 	right_column = 0
 	second_row = 75
 	third_row = 120
-	fourth_row = 180
+	fourth_row = 170
 
 	# NEXT
 	time_change = datetime.timedelta(minutes=30) 
@@ -322,12 +322,12 @@ if (inky_display.WIDTH == 212): #low res display
 
 			# takes a bit of thought this next bit, draw a rectangle from say x =  2i to 2(i-1) for each plot value
 			# pixels_per_w defines the horizontal scaling factor (2 seems to work)
-			draw.rectangle((pixels_per_w*i,chart_base_loc,((pixels_per_w*i)-pixels_per_w),(chart_base_loc-scaled_price)),ink_color)
+			draw.rectangle((1+pixels_per_w*i,chart_base_loc,((pixels_per_w*i)-pixels_per_w),(chart_base_loc-scaled_price)),ink_color)
 			if i%6 == 0 and i > 0:
 				message = str(int(i/2))+"h"
 				font = ImageFont.truetype(HankenGroteskMedium, 7)
 				w, h = font.getsize(message)
-				draw.text(((pixels_per_w*i)-(w/2),chart_base_loc+3), message, inky_display.BLACK, font)
+				draw.text(((1+pixels_per_w*i)-(w/2),chart_base_loc+3), message, inky_display.BLACK, font)
 
 
 	#draw minimum value on chart  <- this doesn't seem to work yet
@@ -361,7 +361,7 @@ if (inky_display.WIDTH == 212): #low res display
 	# draw the bottom right min price and how many hours that is away
 	font = ImageFont.truetype(HankenGroteskMedium, 10)
 	msg = "best 2hr: "+"{0:.1f}".format(lowest_period_next_24h) + "p"
-	draw.text((0,third_row+30), msg, inky_display.BLACK, font)
+	draw.text((0,third_row+20), msg, inky_display.BLACK, font)
 	# we know how many half hours to min price, now figure it out in hours.
 	minterval = (round(two_hour_average.index(lowest_period_next_24h)/2))
 	print ("minterval:"+str(minterval))
@@ -378,7 +378,7 @@ if (inky_display.WIDTH == 212): #low res display
 	print("which is: "+ str(time_of_cheapest.time())[0:5] + "for 2 hours")
 	time_of_cheapest_formatted = "at " + (str(time_of_cheapest.time())[0:5])
 	font = ImageFont.truetype(HankenGroteskMedium, 10)
-	draw.text((0,third_row + 40), msg+" ("+time_of_cheapest_formatted+")", inky_display.BLACK, font)
+	draw.text((0,third_row + 30), msg+" ("+time_of_cheapest_formatted+")", inky_display.BLACK, font)
 
 else: #high res display
 
