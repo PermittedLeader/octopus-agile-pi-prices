@@ -364,7 +364,7 @@ if (inky_display.WIDTH == 212): #low res display
 	msg = "cheapest 2hr:"+"{0:.1f}".format(lowest_period_next_24h) + "p"
 	draw.text((0,third_row), msg, inky_display.BLACK, font)
 	# we know how many half hours to min price, now figure it out in hours.
-	minterval = (round(prices.index(lowest_period_next_24h)/2))
+	minterval = (round(two_hour_average.index(lowest_period_next_24h)/2))
 	print ("minterval:"+str(minterval))
 	msg = "in:"+str(minterval)+"hrs"
 	draw.text((0,fourth_row + 75), msg, inky_display.BLACK, font)
@@ -374,7 +374,7 @@ if (inky_display.WIDTH == 212): #low res display
 	# because it's literally just adding n * 30 mins!
 	# could in future add some code to round to 30 mins increments but it works for now.
 
-	min_offset = prices.index(lowest_period_next_24h) * 30
+	min_offset = two_hour_average.index(lowest_period_next_24h) * 30
 	time_of_cheapest = the_now_local + datetime.timedelta(minutes=min_offset)
 	print("cheapest period at " + str(time_of_cheapest))
 	print("which is: "+ str(time_of_cheapest.time())[0:5] + "for 2 hours")
