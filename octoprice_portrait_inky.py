@@ -18,7 +18,7 @@ import pytz
 import time
 from urllib.request import pathname2url
 
-version = "2.2"
+version = "2.2.4"
 
 ##  -- Detect display type automatically
 try:
@@ -186,7 +186,7 @@ for offset in range(0, 48):  ##24h = 48 segments
 
 two_hour_average = []
 for i in range(0,len(prices)-3):
-	two_hour_average[i] = (prices[i]+prices[i+1]+prices[i+2]+prices[i+3])/4
+	two_hour_average.append((prices[i]+prices[i+1]+prices[i+2]+prices[i+3])/4)
 
 if (inky_display.WIDTH == 212): #low res display
 
