@@ -315,6 +315,10 @@ if (inky_display.WIDTH == 212): #low res display
 				font = ImageFont.truetype(HankenGroteskMedium, 7)
 				w, h = font.getsize(message)
 				draw.text(((1+pixels_per_w*i)-(w/2),chart_base_loc+3), message[0:2], inky_display.BLACK, font)
+			if i == 0:
+				message = "+0h"
+				font = ImageFont.truetype(HankenGroteskMedium, 7)
+				draw.text((1,chart_base_loc+3), message[0:2], inky_display.BLACK, font)
 
 
 	#draw minimum value on chart  <- this doesn't seem to work yet
