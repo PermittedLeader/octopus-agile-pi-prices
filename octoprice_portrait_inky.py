@@ -18,6 +18,8 @@ import pytz
 import time
 from urllib.request import pathname2url
 
+version = "2.1"
+
 ##  -- Detect display type automatically
 try:
     inky_display = InkyPHAT("red")
@@ -189,6 +191,15 @@ if (inky_display.WIDTH == 212): #low res display
 	#x = (inky_display.WIDTH / 2) - (w / 2)
 	#y = (inky_display.HEIGHT / 2) - (h / 2)
 	x = inky_display.HEIGHT - w
+	y = 0
+	draw.text((x, y), message, inky_display.BLACK, font)
+
+	font = ImageFont.truetype(HankenGroteskLight, 12)
+	message = "v" + version
+	w, h = font.getsize(message)
+	#x = (inky_display.WIDTH / 2) - (w / 2)
+	#y = (inky_display.HEIGHT / 2) - (h / 2)
+	x = 0
 	y = 0
 	draw.text((x, y), message, inky_display.BLACK, font)
 
