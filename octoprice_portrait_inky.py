@@ -18,7 +18,7 @@ import pytz
 import time
 from urllib.request import pathname2url
 
-version = "2.5.8"
+version = "2.5.9"
 
 print("Agile Prices, Portrait screen. version "+version)
 
@@ -318,7 +318,7 @@ if (inky_display.WIDTH == 212): #low res display
 				w, h = font.getsize(message)
 				draw.text(((1+pixels_per_w*i)-(w/2),chart_base_loc+3), message[0:2], inky_display.BLACK, font)
 			if i == 0:
-				message = "+0h"
+				message = "+h"
 				font = ImageFont.truetype(HankenGroteskMedium, 7)
 				draw.text((1,chart_base_loc+3), message, inky_display.BLACK, font)
 
