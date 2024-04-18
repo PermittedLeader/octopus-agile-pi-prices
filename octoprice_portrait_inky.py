@@ -208,7 +208,7 @@ if (inky_display.WIDTH == 212): #low res display
 
 	right_column = 0
 	second_row = 75
-	third_row = 100
+	third_row = 120
 	fourth_row = 165
 
 	# NEXT
