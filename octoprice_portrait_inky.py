@@ -20,6 +20,8 @@ from urllib.request import pathname2url
 
 version = "2.4.7"
 
+print("Agile Prices, Portrait screen. version "+version)
+
 ##  -- Detect display type automatically
 try:
     inky_display = InkyPHAT("red")
@@ -179,7 +181,7 @@ for i in range(0,len(prices)-3):
 	two_hour_average.append((prices[i]+prices[i+1]+prices[i+2]+prices[i+3])/4)
 
 if (inky_display.WIDTH == 212): #low res display
-
+	print("Assembling draw")
 	font = ImageFont.truetype(HankenGroteskMedium, 10)
 	message = (str(the_now_local.time())[0:5])
 	w, h = font.getsize(message)
@@ -482,4 +484,5 @@ else: #high res display
 # render the actual image onto the display
 inky_display.set_image(img.rotate(90, expand=True))
 inky_display.show()
+print('Drawn')
 exit(0)
