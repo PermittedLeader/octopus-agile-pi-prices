@@ -18,7 +18,7 @@ import pytz
 import time
 from urllib.request import pathname2url
 
-version = "2.3.2"
+version = "2.3.3"
 
 ##  -- Detect display type automatically
 try:
@@ -353,15 +353,17 @@ if (inky_display.WIDTH == 212): #low res display
 	time_of_cheapest = the_now_local + datetime.timedelta(minutes=min_offset)
 	print("cheapest at " + str(time_of_cheapest))
 	print("which is: "+ str(time_of_cheapest.time())[0:5])
-	time_of_cheapest_formatted = "at " + (str(time_of_cheapest.time())[0:5])
+	time_of_cheapest_formatted = (str(time_of_cheapest.time())[0:5])
 	font = ImageFont.truetype(HankenGroteskMedium, 10)
 	draw.text((0,third_row+10), msg+" ("+time_of_cheapest_formatted+")", inky_display.BLACK, font)
+
+	draw.line((0,third_row+12))
 
 	lowest_period_next_24h = min(i for i in two_hour_average)
 	# draw the bottom right min price and how many hours that is away
 	font = ImageFont.truetype(HankenGroteskMedium, 10)
 	msg = "best 2hr: "+"{0:.1f}".format(lowest_period_next_24h) + "p"
-	draw.text((0,third_row+20), msg, inky_display.BLACK, font)
+	draw.text((0,third_row+22), msg, inky_display.BLACK, font)
 	# we know how many half hours to min price, now figure it out in hours.
 	minterval = (round(two_hour_average.index(lowest_period_next_24h)/2))
 	print ("minterval:"+str(minterval))
@@ -376,9 +378,9 @@ if (inky_display.WIDTH == 212): #low res display
 	time_of_cheapest = the_now_local + datetime.timedelta(minutes=min_offset)
 	print("cheapest period at " + str(time_of_cheapest))
 	print("which is: "+ str(time_of_cheapest.time())[0:5] + "for 2 hours")
-	time_of_cheapest_formatted = "at " + (str(time_of_cheapest.time())[0:5])
+	time_of_cheapest_formatted = (str(time_of_cheapest.time())[0:5])
 	font = ImageFont.truetype(HankenGroteskMedium, 10)
-	draw.text((0,third_row + 30), msg+" ("+time_of_cheapest_formatted+")", inky_display.BLACK, font)
+	draw.text((0,third_row + 32), msg+" ("+time_of_cheapest_formatted+")", inky_display.BLACK, font)
 
 else: #high res display
 
