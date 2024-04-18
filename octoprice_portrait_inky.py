@@ -18,7 +18,7 @@ import pytz
 import time
 from urllib.request import pathname2url
 
-version = "2.2.9"
+version = "2.3.1"
 
 ##  -- Detect display type automatically
 try:
@@ -190,7 +190,7 @@ for i in range(0,len(prices)-3):
 
 if (inky_display.WIDTH == 212): #low res display
 
-	font = ImageFont.truetype(HankenGroteskLight, 12)
+	font = ImageFont.truetype(HankenGroteskMedium, 10)
 	message = (str(the_now_local.time())[0:5])
 	w, h = font.getsize(message)
 	#x = (inky_display.WIDTH / 2) - (w / 2)
