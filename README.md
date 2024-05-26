@@ -1,26 +1,23 @@
 # octopus-agile-pi-prices
 Display the upcoming prices on the Octopus Energy "Agile" tariff. 
 
+This repo is a fork of [pufferfish-tech/octopus-agile-pi-prices](https://github.com/pufferfish-tech/octopus-agile-pi-prices), but adapted to work with a portrait format display.
+
 # What does it do? 
 Octopus is an energy provider in the uk. Agile is a package they provide with half hourly energy prices. https://octopus.energy/agile/
 Amazingly they offer an API to allow us nerds to code things. 
 
 # Yeah but...what does it do? 
 It's for displaying current prices. It runs in python on a raspberry pi. 
-This is great because it means you don't need to install anything*. The current version of Raspbian has the two things it needs: python and SQLite. 
+This is great because it means you don't need to install anything. The current version of Raspbian has the two things it needs: python and SQLite. 
 
-image of it working here -> https://imgur.com/hymxfbq
+image of it working here -> https://imgur.com/a/e35tQVr
 
-There's 2 versions right now. The first one I wrote was for the pimoroni "display-o-tron" hat, which is a three line LCD with RGB frontlighting. It's good, but it's not graphical, and it made a whine noise (a fault in my unit). 
-
-So I wrote a second version for the **pimoroni inkyphat** https://shop.pimoroni.com/?q=inkyphat. This is silent, doesn't self light, consumes no extra power, and oh, it looks awesome! 
-
-(* other than the libraries for whatever display device you want...)
 
 # What do I need?
 currently: 
 - A raspberry pi. The zero W works fine. The pi needs network one way or another. 
-- A display adapter. If you use an inkyphat, it should work out of the box. Same with the DOThat assuming I didn't accidentally break that code.
+- A display adapter. If you use an inkyphat, it should work out of the box
 - An sd card (obviously) - 4GB works fine. Raspbian buster LITE version uses only about half of that. No need for any more. 
 - Octopus Agile API key. 
 
@@ -60,7 +57,7 @@ Once you have an ssh terminal, you can get started with setting up our project
 - Clone our project
 
   ```
-  git clone https://github.com/pufferfish-tech/octopus-agile-pi-prices.git
+  git clone https://github.com/PermittedLeader/octopus-agile-pi-prices.git
   cd octopus-agile-pi-prices
   ```
 
@@ -89,7 +86,7 @@ Now its time to test our scripts:
 - Update the display
 
   ```
-  python3 octoprice_main_inky.py
+  python3 octoprice_portrait_inky.py
   ```
 
 
@@ -100,31 +97,28 @@ You should see your display update with the current price!
 - Run `crontab -e` on the pi and add: 
 
   ```
-  @reboot sleep 10; cd /home/$USER/octopus-agile-pi-prices; /usr/bin/python3 octoprice_main_inky.py > /home/$USER/cron.log
-  */30 * * * * sleep 20; cd /home/$USER/octopus-agile-pi-prices; /usr/bin/python3 octoprice_main_inky.py > /home/$USER/cron.log
-  05 16 * * * cd /home/$USER/octopus-agile-pi-prices; /usr/bin/python3 store_prices.py -r <your region> -t <your tariff> > /home/$USER/cron.log
+
+  @reboot (sleep 10; cd ~/octopus-agile-pi-prices; /usr/bin/python3 octoprice_portrait_inky.py) 2>&1 | logger -t octoprice_refresh
+
+  */30 * * * * (sleep 20; cd ~/octopus-agile-pi-prices; /usr/bin/python3 octoprice_portrait_inky.py) 2>&1 | logger -t octoprice_refresh
+
+  15 16 * * * (cd ~/octopus-agile-pi-prices; /usr/bin/python3 store_prices.py -r "A" -t "FLEX-22-11-25") 2>&1 | logger -t octoprice_price_update
+
   ```
   Substituting the tariff and region as before.
 
   The first line runs the script if you reboot, the second line runs every half hour (but delay by 20s to avoid time based issues!), the third line runs every day at 4:05pm to get the next set of prices.
 
+  If you want it to automatically update when I push new code to this repo, add the following line to your crontab:
+
+  ```
+   55 0 * * * (cd ~/octopus-agile-pi-prices; git pull) 2>&1 | logger -t octoprice_software_update
+
+  ```
+
 - Done! Fix it to the wall! 
 
-NOTE: If you are using the DOThat, you need to edit the above to use octoprice_main_dot.py instead of octoprice_main_inky.py. You will also need to run pimoroni's one line curl install script for the DOThat instead of inkyphat. You can go find that yourself, it exists :) 
-
-Another NOTE: I tried to make this code **simple** and readable. If you see any issues let me know. 
-
 # Considerations
-- I wrote this myself. Because I was bored, and also because I needed to know when to plug the EV in, or start the laundry. It works but it may not be bug free. 
+- I adapted this code from [pufferfish-tech/octopus-agile-pi-prices](https://github.com/pufferfish-tech/octopus-agile-pi-prices) to better fit my use case, namely a portrait orientation and displaying a cheap 2 hour window to run the appliances. 
 - The code used for the inkyphat uses fairly standard python libraries. I haven't looked into it that much as it's a single line install from pimoroni (see below) but it seems to use PIL (python image library). You should be able to adapt this to fit any display. I haven't tried. 
 - The SQLite database currently just stores data every time you update prices. There's no process at this point to ensure you don't duplicate prices (the code doesn't care) or that the database fills up the sd card (I guess it will!). I plan to address this at some point when it becomes a problem. It's important to only run the store_prices.py once a day via cron. Running it more will just duplicate everything more in the db. For now, you can literally just delete the file "octoprice.sqlite" at any time if it gets too big or slow, and rerun store_prices.py. This is why this isn't high priority for me even though it seems like a big deal.
-
-# Future Work
-- Support more generic displays
-- Enable other metrics to display so you can choose what to see
-- Better handling of the sqlite database to avoid duplication and truncate (see above)
-
-# Final note
-If you do appreciate this code and are thinking about joining octopus, I'll leave my referral link here https://share.octopus.energy/rust-heron-863 - We both get £50 which is pretty spectacular. 
-
-Also if you're into home automation or random tinkering then subscribe to my youtube stuff here -> https://www.youtube.com/channel/UCl_uGYJe9KW9fJWBMq1A9kw
